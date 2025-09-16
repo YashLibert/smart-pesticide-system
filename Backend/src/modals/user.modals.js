@@ -26,6 +26,11 @@ const userSchema = new Schema({
     refreshToken: {
         type: String,
     },
+    fullName: {
+        type: String,
+        trim: true,
+        index: true
+    },
 },
     { timestamps: true }
 )
