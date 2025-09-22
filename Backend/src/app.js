@@ -17,10 +17,11 @@ app.use(cookieParser())
 // routes import
 import userRouter from './routes/user.routes.js'
 import router from "./routes/user.routes.js"
-
+import aiRouter from "./routes/plants.routes.js";
+import blockchainRouter from "./routes/blockchian.routes.js"
 // routes declaration
 app.use("/api/v1/users", userRouter)
-
-
+app.use("/api/v1/ai", aiRouter);
+app.use("/api/v1/blockchain", blockchainRouter)
 
 export { app }
