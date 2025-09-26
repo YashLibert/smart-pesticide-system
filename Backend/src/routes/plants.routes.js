@@ -1,13 +1,9 @@
-import express from "express";
-import multer from "multer";
-import { detectDisease } from "../controllers/plants.controllers.js";
+import { Router } from "express";
+import { detectAndLogDisease } from "../controllers/plants.controllers.js";
+import { addPlant } from "../controllers/plants.controllers.js";
 
-const router = express.Router();
+const router = Router();
 
-// setup multer
-const upload = multer({ storage: multer.memoryStorage() });
-
-// route with multer
-router.post("/detect-disease", upload.single("image"), detectDisease);
-
+router.post("/detect", detectAndLogDisease);
+router.post("/add", addPlant);
 export default router;

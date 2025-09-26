@@ -1,4 +1,3 @@
-// src/Services/ai.service.js
 import 'dotenv/config';
 import fetch from "node-fetch";
 
@@ -14,7 +13,7 @@ export async function analyzePlantDisease(imageUrl) {
         const imageBuffer = await imageResponse.arrayBuffer();
 
         // Make the direct API call to Hugging Face
-        const hfResponse = await fetch("https://api-inference.huggingface.co/models/microsoft/resnet-50", {
+        const hfResponse = await fetch("https://api-inference.huggingface.co/models/linkanjarad/mobilenet_v2_1.0_224-plant-disease-identification", {
             headers: {
                 // Manually add the Authorization header with your API key
                 "Authorization": `Bearer ${process.env.HF_API_KEY}`,

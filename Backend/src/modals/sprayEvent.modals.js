@@ -1,37 +1,14 @@
-import mongoose, { Schema } from "mongoose"
+import mongoose from "mongoose";
 
-const sprayEventSchema = new Schema(
-    {
-        farmer: {
-            type: Schema.Types.ObjectId,
-            ref: "User",
-            required: true
-        },
-        crop: {
-            type: Schema.Types.ObjectId,
-            ref: "plant",
-            required: true,
-        },
-        pesticideType: {
-            type: String,
-            required: true
-        },
-        amountUsed: {
-            type: Number,
-            required: true
-        },
-        location: {
-            type: String
-        },
-        infectionLevel: {
-            type: Number,
-            required: true,
-        },
-        blockHash: {
-            type: String
-        },
-    },
-    { timestamps: true }
-)
+const sprayEventSchema = new mongoose.Schema({
+  farmer: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  plant: { type: mongoose.Schema.Types.ObjectId, ref: "Plant", required: true }, // now it works
+  diseaseDetected: { type: String, required: true },
+  infectionLevel: { type: Number, min: 0, max: 1 },
+  pesticideAmount: { type: Number, required: true },
+  compliance: { type: Boolean, default: true },
+  rewardTokens: { type: Number, default: 0 },
+  blockchainHash: { type: String },
+}, { timestamps: true });
 
-export const SprayEvent = mongoose.modelNames("SprayEvent", sprayEventSchema)
+export const SprayEvent = mongoose.model("SprayEvent", sprayEventSchema);

@@ -19,9 +19,21 @@ import userRouter from './routes/user.routes.js'
 import router from "./routes/user.routes.js"
 import aiRouter from "./routes/plants.routes.js";
 import blockchainRouter from "./routes/blockchian.routes.js"
+import plantRouter from "./routes/plants.routes.js"
+import sprayRouter from "./routes/spray.routes.js";
+import plantsRouter from "./routes/plants.routes.js";
 // routes declaration
+app.use((req, res, next) => {
+  console.log("Incoming request:", req.method, req.url);
+  next();
+});
+
 app.use("/api/v1/users", userRouter)
 app.use("/api/v1/ai", aiRouter);
 app.use("/api/v1/blockchain", blockchainRouter)
+app.use("/api/v1/plants", plantRouter); 
+app.use("/api/v1/spray", sprayRouter);
+app.use("/api/v1/plants", plantsRouter);
+
 
 export { app }
